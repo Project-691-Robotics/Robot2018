@@ -5,107 +5,43 @@ Children:
 - Children:
   - Children:
     - Children:
-      - Children:
-        - Children: []
-          Properties:
-            CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-              choices: &id001 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-                '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21',
-                '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-              default: '2'
-              name: CAN ID
-              validators: &id002 [CANID]
-              value: '0'
-          Base: Talon SRX
-          Name: Talon SRX left1
-        - Children: []
-          Properties:
-            CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-              choices: *id001
-              default: '2'
-              name: CAN ID
-              validators: *id002
-              value: '2'
-          Base: Talon SRX
-          Name: Talon SRX left2
+      - Children: []
         Properties:
-          SpeedController4: !!robotbuilder.data.properties.ChildSelectionProperty {
-            default: null, name: SpeedController4, type: PIDOutput, validators: null,
-            value: null}
-          SpeedController3: !!robotbuilder.data.properties.ChildSelectionProperty {
-            default: null, name: SpeedController3, type: PIDOutput, validators: null,
-            value: null}
-          SpeedController2: !!robotbuilder.data.properties.ChildSelectionProperty
-            default: 1
-            name: SpeedController2
-            type: PIDOutput
-            validators: &id003 [SpeedControllerGroup, ChildDropdownSelected]
-            value: Drivetrain Talon SRX left2
-          SpeedController1: !!robotbuilder.data.properties.ChildSelectionProperty
-            default: 0
-            name: SpeedController1
-            type: PIDOutput
-            validators: &id004 [SpeedControllerGroup, ChildDropdownSelected]
-            value: Drivetrain Talon SRX left1
-        Base: Speed Controller Group
-        Name: Group Left
-      - Children:
-        - Children: []
-          Properties:
-            CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-              choices: *id001
-              default: '2'
-              name: CAN ID
-              validators: *id002
-              value: '1'
-          Base: Talon SRX
-          Name: Talon SRX right1
-        - Children: []
-          Properties:
-            CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-              choices: *id001
-              default: '2'
-              name: CAN ID
-              validators: *id002
-              value: '3'
-          Base: Talon SRX
-          Name: Talon SRX right2
+          CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+            choices: &id001 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+              '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22',
+              '23', '24', '25', '26', '27', '28', '29', '30', '31']
+            default: '2'
+            name: CAN ID
+            validators: &id002 [CANID]
+            value: '0'
+        Base: Talon SRX
+        Name: Talon SRX left
+      - Children: []
         Properties:
-          SpeedController4: !!robotbuilder.data.properties.ChildSelectionProperty {
-            default: null, name: SpeedController4, type: PIDOutput, validators: null,
-            value: null}
-          SpeedController3: !!robotbuilder.data.properties.ChildSelectionProperty {
-            default: null, name: SpeedController3, type: PIDOutput, validators: null,
-            value: null}
-          SpeedController2: !!robotbuilder.data.properties.ChildSelectionProperty
-            default: 1
-            name: SpeedController2
-            type: PIDOutput
-            validators: *id003
-            value: Drivetrain Talon SRX right2
-          SpeedController1: !!robotbuilder.data.properties.ChildSelectionProperty
-            default: 0
-            name: SpeedController1
-            type: PIDOutput
-            validators: *id004
-            value: Drivetrain Talon SRX right1
-        Base: Speed Controller Group
-        Name: Group Right
+          CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id001
+            default: '2'
+            name: CAN ID
+            validators: *id002
+            value: '1'
+        Base: Talon SRX
+        Name: Talon SRX right
       Properties:
         Right Motor: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 1
           name: Right Motor
           type: PIDOutput
           validators: [RobotDrive2, ChildDropdownSelected]
-          value: Drivetrain Group Right
+          value: Drivetrain Talon SRX right
         Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Maximum Output, validators: null, value: 1.0}
+          name: Maximum Output, validators: null, value: 0.8}
         Left Motor: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 0
           name: Left Motor
           type: PIDOutput
           validators: [RobotDrive2, ChildDropdownSelected]
-          value: Drivetrain Group Left
+          value: Drivetrain Talon SRX left
         Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
           name: Safety Expiration Time, validators: null, value: 0.1}
         Safety Enabled: !!robotbuilder.data.properties.BooleanProperty {default: true,
@@ -129,6 +65,84 @@ Children:
         value: []
     Base: Subsystem
     Name: Drivetrain
+  - Children:
+    - Children:
+      - Children: []
+        Properties:
+          Type: !!robotbuilder.data.properties.ChoicesProperty
+            choices: &id003 [Victor, Jaguar, Talon, VictorSP, PWMTalonSRX, Spark,
+              SD540, PWMVictorSPX, DMC60]
+            default: Spark
+            name: Type
+            validators: null
+            value: Spark
+          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+            choices: &id004 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+              '11', '12', '13', '14', '15', '16', '17', '18', '19']
+            default: '0'
+            name: Output Channel (PWM)
+            validators: &id005 [PWMOutput]
+            value: '0'
+          Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+            name: Inverted, validators: null, value: false}
+        Base: Speed Controller
+        Name: Winch Motor 1
+      - Children: []
+        Properties:
+          Type: !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id003
+            default: Spark
+            name: Type
+            validators: null
+            value: Spark
+          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id004
+            default: '0'
+            name: Output Channel (PWM)
+            validators: *id005
+            value: '1'
+          Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+            name: Inverted, validators: null, value: false}
+        Base: Speed Controller
+        Name: Winch Motor 2
+      Properties:
+        SpeedController4: !!robotbuilder.data.properties.ChildSelectionProperty {
+          default: null, name: SpeedController4, type: PIDOutput, validators: null,
+          value: null}
+        SpeedController3: !!robotbuilder.data.properties.ChildSelectionProperty {
+          default: null, name: SpeedController3, type: PIDOutput, validators: null,
+          value: null}
+        SpeedController2: !!robotbuilder.data.properties.ChildSelectionProperty
+          default: 1
+          name: SpeedController2
+          type: PIDOutput
+          validators: [SpeedControllerGroup, ChildDropdownSelected]
+          value: Winch Winch Motor 2
+        SpeedController1: !!robotbuilder.data.properties.ChildSelectionProperty
+          default: 0
+          name: SpeedController1
+          type: PIDOutput
+          validators: [SpeedControllerGroup, ChildDropdownSelected]
+          value: Winch Winch Motor 1
+      Base: Speed Controller Group
+      Name: Winch Motor Group
+    Properties:
+      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Send to SmartDashboard, validators: null, value: false}
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: []
+    Base: Subsystem
+    Name: Winch
   Properties: {}
   Base: Subsystems
   Name: Subsystems
