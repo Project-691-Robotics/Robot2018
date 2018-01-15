@@ -52,6 +52,7 @@ public class StickDrive extends Command {
     protected void execute() {
     	dt.drive(stick);
     	if (stick.getTriggerPressed()) {
+    		RobotMap.drivetrainLeftTalon.setSelectedSensorPosition(0, 0, 0);
     		RobotMap.drivetrainRightTalon.setSelectedSensorPosition(0, 0, 0);
     	}
     }

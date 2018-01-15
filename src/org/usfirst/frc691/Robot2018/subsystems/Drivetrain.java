@@ -60,6 +60,8 @@ public class Drivetrain extends Subsystem {
     	driver.arcadeDrive(-stick.getY(), stick.getZ(), true);
     	SmartDashboard.putNumber("TL1", leftTalon.get());
     	SmartDashboard.putNumber("TR1", rightTalon.get());
+    	SmartDashboard.putNumber("TLenc", leftTalon.getSelectedSensorPosition(0));
+    	SmartDashboard.putNumber("TLspd", leftTalon.getSelectedSensorVelocity(0));
     	SmartDashboard.putNumber("TRenc", rightTalon.getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("TRspd", rightTalon.getSelectedSensorVelocity(0));
     	SmartDashboard.putNumber("LeftEncoder", leftEncoder.get());
