@@ -60,6 +60,8 @@ public class Drivetrain extends Subsystem {
     	driver.arcadeDrive(-stick.getY(), stick.getZ(), true);
     	SmartDashboard.putNumber("TL1", leftTalon.get());
     	SmartDashboard.putNumber("TR1", rightTalon.get());
+    	SmartDashboard.putNumber("LeftEncoder", leftEncoder.get());
+    	SmartDashboard.putNumber("RightEncoder", rightEncoder.get());
     }
     
     public void driveStop() {
