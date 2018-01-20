@@ -54,18 +54,25 @@ public class Drivetrain extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-    }
-
-    public void drive(Joystick stick) {
-    	driver.arcadeDrive(-stick.getY(), stick.getZ(), true);
     	SmartDashboard.putNumber("TL1", leftTalon.get());
     	SmartDashboard.putNumber("TR1", rightTalon.get());
     	SmartDashboard.putNumber("TLenc", leftTalon.getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("TLspd", leftTalon.getSelectedSensorVelocity(0));
     	SmartDashboard.putNumber("TRenc", rightTalon.getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("TRspd", rightTalon.getSelectedSensorVelocity(0));
-    	SmartDashboard.putNumber("LeftEncoder", leftEncoder.get());
-    	SmartDashboard.putNumber("RightEncoder", rightEncoder.get());
+    }
+    
+    public void drive(double lspd, double rspd) {
+    	leftTalon.set(lspd);
+    	rightTalon.set(rspd);
+    }
+    
+    public void driveArcade(double xspd, double zspd, boolean sqin) {
+    	driver.arcadeDrive(xspd, zspd, sqin);
+    }
+
+    public void driveStick(Joystick stick) {
+    	driveArcade(-stick.getY(), stick.getZ(), true);
     }
     
     public void driveStop() {
@@ -73,7 +80,7 @@ public class Drivetrain extends Subsystem {
     }
     
     public void resetEncoders() {
-    	leftEncoder.reset();
-    	rightEncoder.reset();
+    	RobotMap.drivetrainLeftTalon.setSelectedSensorPosition(0, 0, 0);
+    	RobotMap.drivetrainRightTalon.setSelectedSensorPosition(0, 0, 0);
     }
 }
