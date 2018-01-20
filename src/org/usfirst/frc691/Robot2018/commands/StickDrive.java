@@ -47,7 +47,6 @@ public class StickDrive extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	RobotMap.drivetrainDriver.setSafetyEnabled(false);
     	dt.resetEncoders();
     	SmartDashboard.putNumber("DriveLeftSpeed", 0);
     	SmartDashboard.putNumber("DriveRightSpeed", 0);
