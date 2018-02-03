@@ -72,15 +72,15 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void drive(double lspd, double rspd) {
-		leftTalon.set(ControlMode.PercentOutput, limit(lspd));
-		rightTalon.set(ControlMode.PercentOutput, limit(rspd));
+		leftTalon.set(ControlMode.PercentOutput, RobotMap.limit(lspd));
+		rightTalon.set(ControlMode.PercentOutput, RobotMap.limit(rspd));
 	}
 
 	public void driveArcade(double xspd, double zspd) {
 		// TODO: Figure out differences in side outputs
 		double maxInput = Math.copySign(Math.max(Math.abs(xspd), Math.abs(zspd)), xspd);
-		xspd = applyDeadband(limit(xspd), MOTOR_DEADBAND);
-		zspd = applyDeadband(limit(zspd), MOTOR_DEADBAND);
+		xspd = applyDeadband(RobotMap.limit(xspd), MOTOR_DEADBAND);
+		zspd = applyDeadband(RobotMap.limit(zspd), MOTOR_DEADBAND);
 		xspd = Math.copySign(xspd * xspd, xspd);
 		zspd = Math.copySign(zspd * zspd, zspd);
 		if (Math.signum(xspd) == Math.signum(zspd)) {
@@ -123,11 +123,8 @@ public class Drivetrain extends Subsystem {
 		rightTalon.setSelectedSensorPosition(0, 0, 0);
 	}
 
+	// TODO: Move to RobotMap
 	public static double applyDeadband(double value, double deadband) {
 		return Math.max((value - Math.copySign(deadband, value)) / (1.0 - deadband), 0.0);
-	}
-
-	public static double limit(double value) {
-		return Math.copySign(Math.min(Math.abs(value), 1.0), value);
 	}
 }

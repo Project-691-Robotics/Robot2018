@@ -83,4 +83,8 @@ public class RobotMap {
         drivetrainRightSlaveTalon.follow(drivetrainRightTalon);
         drivetrainRightSlaveTalon.setInverted(true);
     }
+    
+	public static double limit(double value) {
+		return Math.copySign(Math.min(Math.abs(value), 1.0), value);
+	}
 }

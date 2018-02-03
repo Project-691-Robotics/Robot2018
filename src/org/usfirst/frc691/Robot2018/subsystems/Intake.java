@@ -46,4 +46,12 @@ public class Intake extends Subsystem {
         // Put code here to be run every loop
 
     }
+    
+    public void drive(double spd) {
+    	motorGroup.set(spd);
+    }
+    
+    public void driveStop() {
+    	drive(0);
+    }
 }
