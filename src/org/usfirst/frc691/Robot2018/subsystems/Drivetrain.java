@@ -64,9 +64,7 @@ public class Drivetrain extends Subsystem {
 		SmartDashboard.putNumber("TLspd", leftTalon.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("TRenc", rightTalon.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("TRspd", rightTalon.getSelectedSensorVelocity(0));
-		//SmartDashboard.putNumber("TLtar", leftTalon.getClosedLoopTarget(0));
 		SmartDashboard.putNumber("TLerr", leftTalon.getClosedLoopError(0));
-		//SmartDashboard.putNumber("TRtar", -rightTalon.getClosedLoopTarget(0));
 		SmartDashboard.putNumber("TRerr", rightTalon.getClosedLoopError(0));
 	}
 
@@ -77,18 +75,45 @@ public class Drivetrain extends Subsystem {
 
 	public void driveArcade(double xspd, double zspd) {
 		// TODO: Figure out differences in side outputs
-		double maxInput = Math.copySign(Math.max(Math.abs(xspd), Math.abs(zspd)), xspd);
+		double maxInput;
+		SmartDashboard.putNumber("Xspd", xspd);
+		SmartDashboard.putNumber("Zspd", zspd);
 		xspd = applyDeadband(limit(xspd), MOTOR_DEADBAND);
 		zspd = applyDeadband(limit(zspd), MOTOR_DEADBAND);
 		xspd = Math.copySign(xspd * xspd, xspd);
 		zspd = Math.copySign(zspd * zspd, zspd);
-		if (Math.signum(xspd) == Math.signum(zspd)) {
+		maxInput = Math.copySign(Math.max(Math.abs(xspd), Math.abs(zspd)), xspd);
+		SmartDashboard.putNumber("Xspd1", xspd);
+		SmartDashboard.putNumber("Zspd1", zspd);
+		SmartDashboard.putNumber("mi", maxInput);
+		if (Math.copySign(1, xspd) == Math.copySign(1, zspd)) {
 			xspd = maxInput;
 			zspd = xspd - zspd;
 		} else {
 			xspd = xspd + zspd;
 			zspd = maxInput;
 		}
+		/*if (xspd >= 0.0) {
+			// First quadrant, else second quadrant
+			if (zspd >= 0.0) {
+				xspd = maxInput;
+				zspd = xspd - zspd;
+			} else {
+				xspd = xspd + zspd;
+				zspd = maxInput;
+			}
+		} else {
+			// Third quadrant, else fourth quadrant
+			if (zspd >= 0.0) {
+				xspd = xspd + zspd;
+				zspd = maxInput;
+			} else {
+				xspd = maxInput;
+				zspd = xspd - zspd;
+			}
+		}*/
+		SmartDashboard.putNumber("lspd", xspd);
+		SmartDashboard.putNumber("rspd", zspd);
 		drive(xspd * MOTOR_MAX_DRIVE, zspd * MOTOR_MAX_DRIVE);
 	}
 
@@ -123,7 +148,9 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public static double applyDeadband(double value, double deadband) {
-		return Math.max((value - Math.copySign(deadband, value)) / (1.0 - deadband), 0.0);
+		if (Math.abs(value) <= deadband)
+			return 0.0;
+		return (value - Math.copySign(deadband, value)) / (1.0 - deadband);
 	}
 
 	public static double limit(double value) {
