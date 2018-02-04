@@ -54,7 +54,7 @@ public class Winch extends Subsystem {
     }
     
     public void driveDir(int dir) {
-    	drive(dir * MOTOR_DRIVE);
+    	drive(Math.signum(dir) * MOTOR_DRIVE);
     }
     
     public void driveStop() {
