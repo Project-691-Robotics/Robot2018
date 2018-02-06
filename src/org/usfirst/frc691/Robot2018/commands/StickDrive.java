@@ -107,8 +107,10 @@ public class StickDrive extends Command {
     	double t = (1 - stick.getThrottle()) / 2;
     	SmartDashboard.putNumber("TestSpeed", t);
     	SmartDashboard.putNumber("POV", stick.getPOV());
-    	if (stick.getRawButtonPressed(BUTTON_DIR))
+    	if (stick.getRawButtonPressed(BUTTON_DIR)) {
     		dir = -dir;
+    		SmartDashboard.putNumber("dir", dir);
+    	}
     	winch.drive(dir * t);
     	intake.drive(dir * t);
     }

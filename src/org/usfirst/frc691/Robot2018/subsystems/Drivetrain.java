@@ -78,8 +78,8 @@ public class Drivetrain extends Subsystem {
 		double maxInput;
 		/*SmartDashboard.putNumber("Xspd", xspd);
 		SmartDashboard.putNumber("Zspd", zspd);*/
-		xspd = applyDeadband(RobotMap.limit(xspd), OI.STICK_DEADBAND);
-		zspd = applyDeadband(RobotMap.limit(zspd), OI.STICK_DEADBAND);
+		xspd = RobotMap.applyDeadband(RobotMap.limit(xspd), OI.STICK_DEADBAND);
+		zspd = RobotMap.applyDeadband(RobotMap.limit(zspd), OI.STICK_DEADBAND);
 		xspd = Math.copySign(xspd * xspd, xspd);
 		zspd = Math.copySign(zspd * zspd, zspd);
 		maxInput = Math.copySign(Math.max(Math.abs(xspd), Math.abs(zspd)), xspd);
@@ -126,10 +126,5 @@ public class Drivetrain extends Subsystem {
 	public void resetEncoders() {
 		leftTalon.setSelectedSensorPosition(0, 0, 0);
 		rightTalon.setSelectedSensorPosition(0, 0, 0);
-	}
-
-	// TODO: Move to RobotMap
-	public static double applyDeadband(double value, double deadband) {
-		return Math.copySign(Math.max((Math.abs(value) - deadband) / (1.0 - deadband), 0.0), value);
 	}
 }

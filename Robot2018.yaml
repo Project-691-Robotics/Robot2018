@@ -60,7 +60,7 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: &id005 [PWMOutput]
-            value: '0'
+            value: '2'
           Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
             name: Inverted, validators: null, value: false}
         Base: Speed Controller
@@ -78,7 +78,7 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: *id005
-            value: '1'
+            value: '19'
           Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
             name: Inverted, validators: null, value: false}
         Base: Speed Controller
@@ -136,9 +136,9 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: *id005
-            value: '2'
+            value: '0'
           Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-            name: Inverted, validators: null, value: false}
+            name: Inverted, validators: null, value: true}
         Base: Speed Controller
         Name: Motor 1
       - Children: []
@@ -154,7 +154,7 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: *id005
-            value: '3'
+            value: '1'
           Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
             name: Inverted, validators: null, value: false}
         Base: Speed Controller

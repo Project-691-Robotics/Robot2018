@@ -49,19 +49,19 @@ public class RobotMap {
         drivetrainRightTalon = new WPI_TalonSRX(0);
         
         
-        winchMotor1 = new Spark(0);
+        winchMotor1 = new Spark(2);
         LiveWindow.addActuator("Winch", "Motor 1", (Spark) winchMotor1);
         winchMotor1.setInverted(false);
-        winchMotor2 = new Spark(1);
+        winchMotor2 = new Spark(19);
         LiveWindow.addActuator("Winch", "Motor 2", (Spark) winchMotor2);
         winchMotor2.setInverted(false);
         winchMotorGroup = new SpeedControllerGroup(winchMotor1, winchMotor2  );
         LiveWindow.addActuator("Winch", "Motor Group", winchMotorGroup);
         
-        intakeMotor1 = new Spark(2);
+        intakeMotor1 = new Spark(0);
         LiveWindow.addActuator("Intake", "Motor 1", (Spark) intakeMotor1);
-        intakeMotor1.setInverted(false);
-        intakeMotor2 = new Spark(3);
+        intakeMotor1.setInverted(true);
+        intakeMotor2 = new Spark(1);
         LiveWindow.addActuator("Intake", "Motor 2", (Spark) intakeMotor2);
         intakeMotor2.setInverted(false);
         intakeMotorGroup = new SpeedControllerGroup(intakeMotor1, intakeMotor2  );
@@ -86,5 +86,9 @@ public class RobotMap {
     
 	public static double limit(double value) {
 		return Math.copySign(Math.min(Math.abs(value), 1.0), value);
+	}
+	
+	public static double applyDeadband(double value, double deadband) {
+		return Math.copySign(Math.max((Math.abs(value) - deadband) / (1.0 - deadband), 0.0), value);
 	}
 }
