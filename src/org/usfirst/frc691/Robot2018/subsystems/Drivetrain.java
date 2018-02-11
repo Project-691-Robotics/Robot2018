@@ -75,6 +75,10 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void driveArcade(double xspd, double zspd) {
+		if (++pd == 25) {
+			pd = 0;
+			System.out.format("%f %f", xspd, zspd);
+		}
 		double maxInput;
 		/*SmartDashboard.putNumber("Xspd", xspd);
 		SmartDashboard.putNumber("Zspd", zspd);*/
