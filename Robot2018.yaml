@@ -60,6 +60,92 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: &id005 [PWMOutput]
+            value: '0'
+          Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+            name: Inverted, validators: null, value: true}
+        Base: Speed Controller
+        Name: Motor 1
+      - Children: []
+        Properties:
+          Type: !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id003
+            default: Spark
+            name: Type
+            validators: null
+            value: Spark
+          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id004
+            default: '0'
+            name: Output Channel (PWM)
+            validators: *id005
+            value: '1'
+          Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+            name: Inverted, validators: null, value: false}
+        Base: Speed Controller
+        Name: Motor 2
+      Properties:
+        SpeedController4: !!robotbuilder.data.properties.ChildSelectionProperty {
+          default: null, name: SpeedController4, type: PIDOutput, validators: null,
+          value: null}
+        SpeedController3: !!robotbuilder.data.properties.ChildSelectionProperty {
+          default: null, name: SpeedController3, type: PIDOutput, validators: null,
+          value: null}
+        SpeedController2: !!robotbuilder.data.properties.ChildSelectionProperty
+          default: 1
+          name: SpeedController2
+          type: PIDOutput
+          validators: &id006 [SpeedControllerGroup, ChildDropdownSelected]
+          value: Intake Motor 2
+        SpeedController1: !!robotbuilder.data.properties.ChildSelectionProperty
+          default: 0
+          name: SpeedController1
+          type: PIDOutput
+          validators: &id007 [SpeedControllerGroup, ChildDropdownSelected]
+          value: Intake Motor 1
+      Base: Speed Controller Group
+      Name: Motor Group
+    - Children: []
+      Properties:
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Input Channel (Analog)
+          validators: [AnalogInput]
+          value: '0'
+      Base: Analog Input
+      Name: Ultrasonic
+    Properties:
+      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Send to SmartDashboard, validators: null, value: false}
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: []
+    Base: Subsystem
+    Name: Intake
+  - Children:
+    - Children:
+      - Children: []
+        Properties:
+          Type: !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id003
+            default: Spark
+            name: Type
+            validators: null
+            value: Spark
+          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id004
+            default: '0'
+            name: Output Channel (PWM)
+            validators: *id005
             value: '2'
           Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
             name: Inverted, validators: null, value: false}
@@ -94,13 +180,13 @@ Children:
           default: 1
           name: SpeedController2
           type: PIDOutput
-          validators: &id006 [SpeedControllerGroup, ChildDropdownSelected]
+          validators: *id006
           value: Winch Motor 2
         SpeedController1: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 0
           name: SpeedController1
           type: PIDOutput
-          validators: &id007 [SpeedControllerGroup, ChildDropdownSelected]
+          validators: *id007
           value: Winch Motor 1
       Base: Speed Controller Group
       Name: Motor Group
@@ -136,9 +222,9 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: *id005
-            value: '0'
+            value: '4'
           Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-            name: Inverted, validators: null, value: true}
+            name: Inverted, validators: null, value: false}
         Base: Speed Controller
         Name: Motor 1
       - Children: []
@@ -154,7 +240,7 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: *id005
-            value: '1'
+            value: '5'
           Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
             name: Inverted, validators: null, value: false}
         Base: Speed Controller
@@ -171,25 +257,15 @@ Children:
           name: SpeedController2
           type: PIDOutput
           validators: *id006
-          value: Intake Motor 2
+          value: Elevator Motor 2
         SpeedController1: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 0
           name: SpeedController1
           type: PIDOutput
           validators: *id007
-          value: Intake Motor 1
+          value: Elevator Motor 1
       Base: Speed Controller Group
       Name: Motor Group
-    - Children: []
-      Properties:
-        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
-          default: '0'
-          name: Input Channel (Analog)
-          validators: [AnalogInput]
-          value: '0'
-      Base: Analog Input
-      Name: Ultrasonic
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
@@ -206,7 +282,7 @@ Children:
         validators: null
         value: []
     Base: Subsystem
-    Name: Intake
+    Name: Elevator
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -228,7 +304,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '1'
+          value: '32'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -314,10 +390,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Intake}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id008 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id008
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command

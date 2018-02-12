@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -61,8 +60,8 @@ public class OI {
 
         stick = new Joystick(0);
         
-        buttonIntakeIn = new JoystickButton(stick, 1);
-        //buttonIntakeIn.whenPressed(new IntakeIn());
+        buttonIntakeIn = new JoystickButton(stick, 32);
+        buttonIntakeIn.whenPressed(new IntakeIn());
 
 
         // SmartDashboard Buttons
