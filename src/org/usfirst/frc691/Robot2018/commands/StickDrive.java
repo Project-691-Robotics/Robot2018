@@ -97,14 +97,7 @@ public class StickDrive extends Command {
     	} else {
     		dt.drivePIDVelocity(SmartDashboard.getNumber("DrivePIDVelocity", 0));
     	}
-    	// Winch
-    	/*if (stick.getTrigger()) {
-    		winch.driveDir(1);
-    	} else if (stick.getRawButton(2)) {
-    		winch.driveDir(-1);
-    	} else {
-    		winch.driveStop();
-    	}
+    	/*
     	// Intake
     	if (stick.getRawButton(3)) {
     		intake.driveDir(1);
@@ -112,7 +105,16 @@ public class StickDrive extends Command {
     		intake.driveDir(-1);
     	} else {
     		intake.driveStop();
-    	}*/
+    	}
+    	// Winch
+    	if (stick.getTrigger()) {
+    		winch.driveDir(1);
+    	} else if (stick.getRawButton(2)) {
+    		winch.driveDir(-1);
+    	} else {
+    		winch.driveStop();
+    	}
+    	*/
     	// TEST
     	double t = (1 - stick.getThrottle()) / 2;
     	SmartDashboard.putNumber("TestSpeed", t);
