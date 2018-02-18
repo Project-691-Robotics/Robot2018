@@ -60,7 +60,7 @@ public class OI {
 
         stick = new Joystick(0);
         
-        buttonIntakeIn = new JoystickButton(stick, 2);
+        buttonIntakeIn = new JoystickButton(stick, 6);
         buttonIntakeIn.whenPressed(new IntakeIn());
 
 

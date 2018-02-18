@@ -64,7 +64,7 @@ public class StickDrive extends Command {
     @Override
     protected void initialize() {
     	dmode = 0;
-    	tmode = 0;
+    	tmode = -1;
     	dir = 1;
     	dt.resetEncoders();
     	
@@ -131,7 +131,7 @@ public class StickDrive extends Command {
     		intake.drive(dir * t);
     	} else if (tmode == 1) {
     		winch.drive(dir * t);
-    	} else {
+    	} else if (tmode == 2) {
     		elev.drive(dir * t);
     	}
     }
