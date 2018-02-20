@@ -24,6 +24,7 @@ import org.usfirst.frc691.Robot2018.subsystems.Winch;
 public class StickDrive extends Command {
 	private static int BUTTON_SWAP = 4;
 	private static int BUTTON_TWIST = 5;
+	private static int BUTTON_ELEV_INV = 3;
 	private static int BUTTON_TMODE = 9;
 	private static int BUTTON_DIR = 8;
 	private static int BUTTON_DMODE = 12;
@@ -39,6 +40,7 @@ public class StickDrive extends Command {
 	
 	private int swap = 1;
 	private boolean twist = false;
+	private int elevInv = 1;
 	private int dmode = 0;
 	private int tmode = 0;
 	private int dir = 1;
@@ -69,6 +71,7 @@ public class StickDrive extends Command {
     protected void initialize() {
     	swap = 1;
     	twist = false;
+    	elevInv = 1;
     	dmode = 0;
     	tmode = -1;
     	dir = 1;
@@ -93,6 +96,10 @@ public class StickDrive extends Command {
     	if (stick.getRawButtonPressed(BUTTON_TWIST)) {
     		twist = !twist;
     		SmartDashboard.putBoolean("twist", twist);
+    	}
+    	if (stick.getRawButtonPressed(BUTTON_ELEV_INV)) {
+    		elevInv = -elevInv;
+    		SmartDashboard.putNumber("elevInv", elevInv);
     	}
     	if (stick.getRawButtonPressed(BUTTON_DMODE)) {
     		dmode = (dmode + 1) % 3;
@@ -132,9 +139,9 @@ public class StickDrive extends Command {
     	boolean estop = false;
     	int pov = stick.getPOV();
     	if (pov == 0) {
-    		elev.driveDir(1);
+    		elev.driveDir(elevInv);
     	} else if (pov == 180) {
-    		elev.driveDir(-1);
+    		elev.driveDir(elevInv);
     	} else {
     		estop = true;
     		//elev.driveStop();
