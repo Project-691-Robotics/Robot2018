@@ -23,6 +23,7 @@ import org.usfirst.frc691.Robot2018.subsystems.Winch;
 
 public class StickDrive extends Command {
 	private static int BUTTON_SWAP = 4;
+	private static int BUTTON_TWIST = 5;
 	private static int BUTTON_TMODE = 9;
 	private static int BUTTON_DIR = 8;
 	private static int BUTTON_DMODE = 12;
@@ -36,7 +37,8 @@ public class StickDrive extends Command {
 	private Intake intake;
 	private Elevator elev;
 	
-	private int swap = 1; 
+	private int swap = 1;
+	private boolean twist = false;
 	private int dmode = 0;
 	private int tmode = 0;
 	private int dir = 1;
@@ -66,6 +68,7 @@ public class StickDrive extends Command {
     @Override
     protected void initialize() {
     	swap = 1;
+    	twist = false;
     	dmode = 0;
     	tmode = -1;
     	dir = 1;
@@ -87,6 +90,10 @@ public class StickDrive extends Command {
     		swap = -swap;
     		SmartDashboard.putNumber("swap", swap);
     	}
+    	if (stick.getRawButtonPressed(BUTTON_TWIST)) {
+    		twist = !twist;
+    		SmartDashboard.putBoolean("twist", twist);
+    	}
     	if (stick.getRawButtonPressed(BUTTON_DMODE)) {
     		dmode = (dmode + 1) % 3;
     		SmartDashboard.putNumber("dmode", dmode);
@@ -99,7 +106,7 @@ public class StickDrive extends Command {
     	}
     	// Drivetrain
     	if (dmode == 0) {
-    		dt.driveArcade(-swap * stick.getY(), stick.getX());
+    		dt.driveArcade(-swap * stick.getY(), (twist ? stick.getZ() : stick.getX()));
     	} else if (dmode == 1) {
     		dt.drive(SmartDashboard.getNumber("DriveLeftSpeed", 0), SmartDashboard.getNumber("DriveRightSpeed", 0));
     	} else {
