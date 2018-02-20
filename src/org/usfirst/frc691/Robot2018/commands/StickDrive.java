@@ -141,10 +141,10 @@ public class StickDrive extends Command {
     	if (pov == 0) {
     		elev.driveDir(elevInv);
     	} else if (pov == 180) {
-    		elev.driveDir(elevInv);
+    		elev.driveDir(-elevInv);
     	} else {
     		estop = true;
-    		//elev.driveStop();
+    		elev.driveStop();
     	}
     	// TEST
     	double t = (1 - stick.getThrottle()) / 2;
