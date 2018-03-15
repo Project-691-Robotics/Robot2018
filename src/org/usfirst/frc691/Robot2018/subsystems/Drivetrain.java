@@ -53,20 +53,12 @@ public class Drivetrain extends Subsystem {
 
 	@Override
 	public void periodic() {
-		kP = SmartDashboard.getNumber("kP", kP);
-		kI = SmartDashboard.getNumber("kI", kI);
-		kD = SmartDashboard.getNumber("kD", kD);
-		kF = SmartDashboard.getNumber("kF", kF);
-		setPIDF(kP, kI, kD, kF);
-
 		SmartDashboard.putNumber("TL1", leftTalon.getMotorOutputPercent());
 		SmartDashboard.putNumber("TR1", rightTalon.getMotorOutputPercent());
 		SmartDashboard.putNumber("TLenc", leftTalon.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("TLspd", leftTalon.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("TRenc", rightTalon.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("TRspd", rightTalon.getSelectedSensorVelocity(0));
-		SmartDashboard.putNumber("TLerr", leftTalon.getClosedLoopError(0));
-		SmartDashboard.putNumber("TRerr", rightTalon.getClosedLoopError(0));
 	}
 
 	public void drive(double lspd, double rspd) {
