@@ -75,27 +75,14 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void driveArcade(double xspd, double zspd) {
-		double maxInput;
-		/*SmartDashboard.putNumber("Xspd", xspd);
-		SmartDashboard.putNumber("Zspd", zspd);*/
+		double lspd, rspd;
 		xspd = RobotMap.applyDeadband(RobotMap.limit(xspd), OI.STICK_DEADBAND);
 		zspd = RobotMap.applyDeadband(RobotMap.limit(zspd), OI.STICK_DEADBAND);
 		xspd = Math.copySign(xspd * xspd, xspd);
 		zspd = Math.copySign(zspd * zspd, zspd);
-		maxInput = Math.copySign(Math.max(Math.abs(xspd), Math.abs(zspd)), xspd);
-		/*SmartDashboard.putNumber("Xspd1", xspd);
-		SmartDashboard.putNumber("Zspd1", zspd);
-		SmartDashboard.putNumber("mi", maxInput);*/
-		if (Math.copySign(1, xspd) == Math.copySign(1, zspd)) {
-			xspd = maxInput;
-			zspd = xspd - zspd;
-		} else {
-			xspd = xspd + zspd;
-			zspd = maxInput;
-		}
-		SmartDashboard.putNumber("lspd", xspd);
-		SmartDashboard.putNumber("rspd", zspd);
-		drive(xspd * MOTOR_MAX_DRIVE, zspd * MOTOR_MAX_DRIVE);
+		lspd = xspd + zspd;
+		rspd = xspd - zspd;
+		drive(lspd * MOTOR_MAX_DRIVE, rspd * MOTOR_MAX_DRIVE);
 	}
 
 	public void driveStop() {
