@@ -48,7 +48,6 @@ public class Intake extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-    	SmartDashboard.putNumber("Ultrasonic", ultrasonic.getAverageVoltage());
     }
     
     public void drive(double spd) {

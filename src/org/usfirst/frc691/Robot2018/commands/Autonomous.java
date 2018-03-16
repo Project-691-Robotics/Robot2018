@@ -8,8 +8,8 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc691.Robot2018.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc691.Robot2018.Robot;
 import org.usfirst.frc691.Robot2018.subsystems.Drivetrain;
@@ -38,19 +38,23 @@ public class Autonomous extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	dt.resetEncoders();
+    	System.out.println("Autonomous init");
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+    	System.out.println("Autonomous execute");
+    	dt.resetEncoders();
     	dt.driveAuto(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return dt.getEncoders() >= distEnc;
+    	System.out.println("Autonomous isFinished");
+        //return dt.getEncoders() >= distEnc;
+        return true;
     }
 
     // Called once after isFinished returns true

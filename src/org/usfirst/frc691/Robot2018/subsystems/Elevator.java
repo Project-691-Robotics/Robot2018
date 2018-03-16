@@ -68,7 +68,6 @@ public class Elevator extends PIDSubsystem {
     
     @Override
     public void periodic() {
-    	SmartDashboard.putNumber("ElevEnc", encoder.get());
     }
 
     @Override

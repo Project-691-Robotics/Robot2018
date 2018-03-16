@@ -22,10 +22,11 @@ import org.usfirst.frc691.Robot2018.subsystems.Intake;
 import org.usfirst.frc691.Robot2018.subsystems.Winch;
 
 public class StickDrive extends Command {
-	private static int BUTTON_SWAP = 3;
-	private static int BUTTON_TWIST = 4;
+	private static int BUTTON_SWAP = 5;
+	private static int BUTTON_TWIST = 6;
 	//private static int BUTTON_ELEV_INV = 3;
-	private static int BUTTON_WINCH = 5;
+	private static int BUTTON_WINCH_UP = 3;
+	private static int BUTTON_WINCH_DOWN = 4;
 	private static int BUTTON_TMODE = 9;
 	private static int BUTTON_DIR = 8;
 	private static int BUTTON_DMODE = 12;
@@ -129,8 +130,10 @@ public class StickDrive extends Command {
     		intake.driveStop();
     	}
     	// Winch
-    	if (stick.getRawButton(BUTTON_WINCH)) {
+    	if (stick.getRawButton(BUTTON_WINCH_UP)) {
     		winch.driveDir(1);
+    	} else if (stick.getRawButton(BUTTON_WINCH_DOWN)) {
+    		winch.driveDir(-1);
     	} else {
     		winch.driveStop();
     	}
