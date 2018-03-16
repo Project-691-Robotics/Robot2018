@@ -39,13 +39,13 @@ public class Autonomous extends Command {
     @Override
     protected void initialize() {
     	System.out.println("Autonomous init");
+    	dt.resetEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
     	System.out.println("Autonomous execute");
-    	dt.resetEncoders();
     	dt.driveAuto(1);
     }
 
@@ -54,12 +54,13 @@ public class Autonomous extends Command {
     protected boolean isFinished() {
     	System.out.println("Autonomous isFinished");
         //return dt.getEncoders() >= distEnc;
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	System.out.println("Autonomous end");
     	dt.driveStop();
     }
 
@@ -67,7 +68,7 @@ public class Autonomous extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-    	end();
+    	System.out.println("Autonomous interrupted");
     }
     
     public void setDistInches(double in) {

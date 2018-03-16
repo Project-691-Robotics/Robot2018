@@ -66,7 +66,6 @@ public class MotionMagicTest extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-    	end();
     }
     
     public void setDistInches(double in) {

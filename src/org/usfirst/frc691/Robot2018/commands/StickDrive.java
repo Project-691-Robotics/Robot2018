@@ -78,6 +78,7 @@ public class StickDrive extends Command {
     	tmode = -1;
     	dir = 1;
     	dt.resetEncoders();
+    	System.out.println("Sdrive init");
     	
     	SmartDashboard.putNumber("swap", swap);
     	SmartDashboard.putNumber("dmode", dmode);
