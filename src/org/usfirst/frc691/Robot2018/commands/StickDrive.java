@@ -22,9 +22,10 @@ import org.usfirst.frc691.Robot2018.subsystems.Intake;
 import org.usfirst.frc691.Robot2018.subsystems.Winch;
 
 public class StickDrive extends Command {
-	private static int BUTTON_SWAP = 4;
-	private static int BUTTON_TWIST = 5;
-	private static int BUTTON_ELEV_INV = 3;
+	private static int BUTTON_SWAP = 3;
+	private static int BUTTON_TWIST = 4;
+	//private static int BUTTON_ELEV_INV = 3;
+	private static int BUTTON_WINCH = 5;
 	private static int BUTTON_TMODE = 9;
 	private static int BUTTON_DIR = 8;
 	private static int BUTTON_DMODE = 12;
@@ -97,10 +98,10 @@ public class StickDrive extends Command {
     		twist = !twist;
     		SmartDashboard.putBoolean("twist", twist);
     	}
-    	if (stick.getRawButtonPressed(BUTTON_ELEV_INV)) {
+    	/*if (stick.getRawButtonPressed(BUTTON_ELEV_INV)) {
     		elevInv = -elevInv;
     		SmartDashboard.putNumber("elevInv", elevInv);
-    	}
+    	}*/
     	if (stick.getRawButtonPressed(BUTTON_DMODE)) {
     		dmode = (dmode + 1) % 3;
     		SmartDashboard.putNumber("dmode", dmode);
@@ -128,20 +129,20 @@ public class StickDrive extends Command {
     		intake.driveStop();
     	}
     	// Winch
-    	/*if (stick.getRawButton(3)) {
+    	if (stick.getRawButton(BUTTON_WINCH)) {
     		winch.driveDir(1);
-    	} else if (stick.getRawButton(4)) {
-    		winch.driveDir(-1);
     	} else {
     		winch.driveStop();
-    	}*/
+    	}
     	// Elevator
     	boolean estop = false;
     	int pov = stick.getPOV();
     	if (pov == 0) {
-    		elev.driveDir(elevInv);
+    		//elev.driveDir(elevInv);
+    		elev.driveUp(elevInv);
     	} else if (pov == 180) {
-    		elev.driveDir(-elevInv);
+    		//elev.driveDir(-elevInv);
+    		elev.driveDown(elevInv);
     	} else {
     		estop = true;
     		elev.driveStop();
@@ -157,9 +158,7 @@ public class StickDrive extends Command {
     		tmode = (tmode + 1) % 2;
     		SmartDashboard.putNumber("tmode", tmode);
     	}
-    	if (tmode == 0 && estop) {
-    		elev.drive(dir * t);
-    	} else if (tmode == 1) {
+    	if (tmode == 1) {
     		winch.drive(dir * t);
     	}
     }
