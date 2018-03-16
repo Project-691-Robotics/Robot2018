@@ -40,6 +40,7 @@ public class MotionMagicTest extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+    	System.out.println("MMT init");
     	dt.resetEncoders();
     	dt.configMotionMagic(MM_CRUISE_VEL, MM_ACCEL);
     }
@@ -47,25 +48,29 @@ public class MotionMagicTest extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+    	//System.out.println("MMT exec");
     	dt.driveMotionMagic(distEnc);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return true;
+    	//System.out.println("MMT fin");
+        return false;
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
-    	dt.driveStop();
+    	System.out.println("MMT end");
+    	//dt.driveStop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	System.out.println("MMT interrupt");
     }
     
     public void setDistInches(double in) {
