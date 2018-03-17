@@ -25,7 +25,8 @@ public class StickDrive extends Command {
 	private static int BUTTON_SWAP = 11;
 	private static int BUTTON_TWIST = 9;
 	//private static int BUTTON_ELEV_INV = 3;
-	private static int BUTTON_WINCH = 3;
+	private static int BUTTON_WINCH_UP = 3;
+	private static int BUTTON_WINCH_DOWN = 4;
 	//private static int BUTTON_TMODE = 9;
 	//private static int BUTTON_DIR = 8;
 	//private static int BUTTON_DMODE = 12;
@@ -133,8 +134,10 @@ public class StickDrive extends Command {
     	// Winch
     	double t = (1 - stick.getThrottle()) / 2;
     	SmartDashboard.putNumber("TestSpeed", t);
-    	if (stick.getRawButton(BUTTON_WINCH)) {
+    	if (stick.getRawButton(BUTTON_WINCH_UP)) {
     		winch.drive(t);
+    	} else if (stick.getRawButton(BUTTON_WINCH_DOWN)) {
+    		winch.drive(-t);
     	} else {
     		winch.driveStop();
     	}
