@@ -147,6 +147,7 @@ public class Drivetrain extends Subsystem {
 		}
 		if (Math.abs(turnGoal - curAngle) < 5) {
 			driveStop();
+			isTurning = false;
 			return true;
 		}
 		int mult = (int) Math.signum(turnGoal - curAngle);

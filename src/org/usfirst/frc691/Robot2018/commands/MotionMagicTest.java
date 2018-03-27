@@ -63,7 +63,7 @@ public class MotionMagicTest extends Command {
     @Override
     protected boolean isFinished() {
     	//System.out.println("MMT fin");
-        return isDone;
+        return dt.getEncoders() > 50 && isDone;
     }
 
     // Called once after isFinished returns true
