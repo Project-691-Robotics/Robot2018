@@ -44,7 +44,7 @@ public class TurnTest extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	System.out.println("TT init");
+    	System.out.println("TT init --TO--: " + (dt.navx.getAngle() + angle));
     	isDone = false;
     }
 
