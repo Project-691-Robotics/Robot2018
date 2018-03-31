@@ -22,12 +22,12 @@ import org.usfirst.frc691.Robot2018.subsystems.Intake;
 import org.usfirst.frc691.Robot2018.subsystems.Winch;
 
 public class StickDrive extends Command {
-	private static int BUTTON_SWAP = 11;
-	private static int BUTTON_TWIST = 9;
-	private static int BUTTON_ELEV_UP = 3;
-	private static int BUTTON_ELEV_DN = 2;
-	private static int BUTTON_WINCH_UP = 4;
-	private static int BUTTON_WINCH_DN = 5;
+	private static final int BUTTON_SWAP = 11;
+	private static final int BUTTON_TWIST = 9;
+	private static final int BUTTON_ELEV_UP = 3;
+	private static final int BUTTON_ELEV_DN = 2;
+	private static final int BUTTON_WINCH_UP = 4;
+	private static final int BUTTON_WINCH_DN = 5;
 	//private static int BUTTON_TMODE = 9;
 	//private static int BUTTON_DIR = 8;
 	//private static int BUTTON_DMODE = 12;
@@ -81,6 +81,7 @@ public class StickDrive extends Command {
     	dmode = 0;
     	tmode = -1;
     	dir = 1;
+    	// TODO: Check if need reset
     	dt.resetEncoders();
     	
     	SmartDashboard.putNumber("swap", swap);

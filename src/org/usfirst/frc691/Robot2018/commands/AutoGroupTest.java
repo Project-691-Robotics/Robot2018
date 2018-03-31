@@ -7,6 +7,8 @@ public class AutoGroupTest extends CommandGroup {
 	private static final int SIDE_DIST_IN = 200;
 	private static final int MID_DIST_IN = 180;
 	private static final int SWITCH_DIST_IN = 24;
+	//private static final int SWITCH_DIST_IN = 240;
+	private static final int SWITCH_TIMEOUT_SEC = 6;
 	
 	MotionMagicTest mmt = new MotionMagicTest();
 	TurnTest tt = new TurnTest();
@@ -16,9 +18,12 @@ public class AutoGroupTest extends CommandGroup {
 
 	public AutoGroupTest() {
 		addSequential(mmt);
+		//addSequential(new Wait(2));//--
 		addSequential(tt);
-		addParallel(ad);
 		addSequential(eu);
+		//addSequential(new Wait(2));//--
+		addSequential(ad, SWITCH_TIMEOUT_SEC);
+		//--addParallel(ad, SWITCH_TIMEOUT_SEC);
 		addSequential(io);
 	}
 	

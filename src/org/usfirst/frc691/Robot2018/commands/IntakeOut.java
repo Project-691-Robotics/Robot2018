@@ -10,7 +10,6 @@
 
 package org.usfirst.frc691.Robot2018.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc691.Robot2018.Robot;
@@ -49,14 +48,14 @@ public class IntakeOut extends Command {
     protected void initialize() {
     	timer.reset();
     	timer.start();
-    	System.out.println("IO init");
+    	System.out.println("IO init: " + timer.get());
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
     	//System.out.println("Autonomous execute");
-    	intake.driveDir(-1);
+    	intake.driveDir(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -69,7 +68,7 @@ public class IntakeOut extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-    	System.out.println("IO end");
+    	System.out.println("IO end: " + timer.get());
     	timer.stop();
     	intake.driveStop();
     }
@@ -79,8 +78,7 @@ public class IntakeOut extends Command {
     @Override
     protected void interrupted() {
     	System.out.println("IO interrupted");
-    	// TODO: Test end() here
-    	//end();
+    	end();
     }
     
     public void setDurSec(int ds) {

@@ -75,8 +75,7 @@ public class Wait extends Command {
     @Override
     protected void interrupted() {
     	System.out.println("Wait interrupted");
-    	// TODO: Test end() here
-    	//end();
+    	end();
     }
     
     public void setWaitSec(int ws) {

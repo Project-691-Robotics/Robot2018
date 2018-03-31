@@ -11,6 +11,8 @@
 package org.usfirst.frc691.Robot2018.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc691.Robot2018.Robot;
 import org.usfirst.frc691.Robot2018.subsystems.Drivetrain;
 
@@ -66,7 +68,7 @@ public class TurnTest extends Command {
     @Override
     protected void end() {
     	System.out.println("TT end");
-    	//dt.driveStop();
+    	dt.driveStop();
     }
 
     // Called when another command which requires one or more of the same
@@ -74,6 +76,7 @@ public class TurnTest extends Command {
     @Override
     protected void interrupted() {
     	System.out.println("TT interrupt");
+    	end();
     }
     
     public void setAngle(int a) {
