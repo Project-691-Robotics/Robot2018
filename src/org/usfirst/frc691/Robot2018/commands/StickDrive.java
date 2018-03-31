@@ -74,13 +74,13 @@ public class StickDrive extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+    	System.out.println("Sdrive init");
     	swap = 1;
     	twist = false;
     	elevInv = 1;
     	dmode = 0;
     	tmode = -1;
     	dir = 1;
-    	System.out.println("Sdrive init");
     	dt.resetEncoders();
     	
     	SmartDashboard.putNumber("swap", swap);
@@ -180,6 +180,7 @@ public class StickDrive extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	System.out.println("Sdrive end");
     	dt.driveStop();
     	winch.driveStop();
     	intake.driveStop();
@@ -190,6 +191,7 @@ public class StickDrive extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	System.out.println("Sdrive interrupted");
     	end();
     }
 }

@@ -81,7 +81,6 @@ public class Robot extends TimedRobot {
         
         auto = new Autonomous();
         agt = new AutoGroupTest();
-        agt.setParams(240, 180);
         mmt = new MotionMagicTest();
         mmt.setDistInches(240);
         autoChooser.addDefault("Autonomous", auto);
@@ -117,8 +116,8 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
     	int color = (DriverStation.getInstance().getGameSpecificMessage().charAt(0) == 'L' ? 1 : -1);
     	int spot = spotChooser.getSelected();
-    	System.out.println("My color on scale is on the " + color);
-    	System.out.println("I am in the " + spot + " spot");
+    	System.out.println("My color on scale is " + color);
+    	System.out.println("My spot on wall is " + spot);
     	agt.setColorSpot(color, spot);
     	elevator.servoSetRelease();
         autonomousCommand = autoChooser.getSelected();
