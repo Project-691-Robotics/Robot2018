@@ -98,6 +98,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("MMT Inches", 36);
         SmartDashboard.putNumber("TT Angle", 90);
         SmartDashboard.putBoolean("Elevator Inverted", false);
+        SmartDashboard.putNumber("MatchNumber", SmartDashboard.getNumber("MatchNumber", 1));
     }
 
     /**
@@ -119,8 +120,13 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-    	int color = (DriverStation.getInstance().getGameSpecificMessage().charAt(0) == 'L' ? 1 : -1);
-    	int spot = spotChooser.getSelected();
+    	String gameMsg = DriverStation.getInstance().getGameSpecificMessage();
+    	int color, spot;
+    	if (gameMsg == null || gameMsg.length() < 1)
+    		color = 1 - (2 * (((int) SmartDashboard.getNumber("MatchNumber", 1)) % 2));
+    	else
+    		color = (DriverStation.getInstance().getGameSpecificMessage().charAt(0) == 'L' ? 1 : -1);
+    	spot = spotChooser.getSelected();
     	System.out.println("My color on scale is " + color);
     	System.out.println("My spot on wall is " + spot);
     	agt.setColorSpot(color, spot);

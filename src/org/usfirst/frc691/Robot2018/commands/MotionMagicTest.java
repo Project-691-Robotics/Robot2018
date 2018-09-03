@@ -54,7 +54,7 @@ public class MotionMagicTest extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	System.out.println("MMT init");
+    	System.out.println("MMT init --TO--: " + distEnc);
     	// TODO: Check if need reset
     	dt.resetEncoders();
     	dt.configMotionMagic(mmCruiseVel, mmAccel);
