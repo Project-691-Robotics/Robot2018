@@ -1,15 +1,15 @@
 plugins {
-    id "java"
-    id "edu.wpi.first.GradleRIO" version "2019.1.1"
+    id 'java'
+    id 'edu.wpi.first.GradleRIO' version '2019.2.1'
 }
 
-def ROBOT_MAIN_CLASS = "frc.team691.robot2018.Main"
+def ROBOT_MAIN_CLASS = 'frc.team691.robot2018.Main'
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
 deploy {
     targets {
-        roboRIO("roborio") {
+        roboRIO('roborio') {
             // Team number is loaded either from the .wpilib/wpilib_preferences.json
             // or from command line. If not found an exception will be thrown.
             // You can use getTeamOrDefault(team) instead of getTeamNumber if you
@@ -19,7 +19,7 @@ deploy {
     }
     artifacts {
         frcJavaArtifact('frcJava') {
-            targets << "roborio"
+            targets << 'roborio'
             // Debug can be overridden by command line, for use with VSCode
             debug = frc.getDebugOrDefault(false)
         }
@@ -28,7 +28,7 @@ deploy {
             // The directory below is the local directory to deploy
             files = fileTree(dir: 'src/main/deploy')
             // Deploy to RoboRIO target, into /home/lvuser/deploy
-            targets << "roborio"
+            targets << 'roborio'
             directory = '/home/lvuser/deploy'
         }
     }
