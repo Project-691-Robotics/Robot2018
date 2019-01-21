@@ -6,8 +6,7 @@ public class AutoGroupTest extends CommandGroup {
 	private static final int TT_ANGLE = 90;
 	private static final int SIDE_DIST_IN = 200;
 	private static final int MID_DIST_IN = 180;
-	private static final int SWITCH_DIST_IN = 24;
-	//private static final int SWITCH_DIST_IN = 240;
+	private static final int SWITCH_DIST_IN = 24/*0*/;
 	private static final int SWITCH_TIMEOUT_SEC = 6;
 	
 	MotionMagicTest mmt = new MotionMagicTest();
@@ -39,12 +38,6 @@ public class AutoGroupTest extends CommandGroup {
 	}
 
 	public void setColorSpot(int color, int spot) {
-		/*if (spot == 0) {
-			setParams(MID_DIST_IN, 0);
-			setSwitchParams(0, 0, 0);
-		} else {
-			setParams(SIDE_DIST_IN, (spot == color ? spot * TT_ANGLE : 0));
-		}*/
 		if (spot == color) {
 			setParams(SIDE_DIST_IN, spot * TT_ANGLE);
 		} else {
